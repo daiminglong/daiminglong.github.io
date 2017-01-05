@@ -85,18 +85,18 @@
 
 
 <meta name="description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;C++内存管理可谓是我在研一期间计算机应用编程课上学到的最多的东西。对于一个C++程序员来说最难的也就是C++的内存管理了，在经过一系列的考证以及训练以后，我想写下我对C++内存管理的一些理解以及我在写代码时在别人博客上学到的东西，当然最重要的就是自己的一些经验教训，以便自己日后回顾。希望自己少走一些弯路。
-#1.">
+1.">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Memory Control">
 <meta property="og:url" content="http://yoursite.com/2017/01/02/memory-control/index.html">
 <meta property="og:site_name" content="networking">
 <meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;C++内存管理可谓是我在研一期间计算机应用编程课上学到的最多的东西。对于一个C++程序员来说最难的也就是C++的内存管理了，在经过一系列的考证以及训练以后，我想写下我对C++内存管理的一些理解以及我在写代码时在别人博客上学到的东西，当然最重要的就是自己的一些经验教训，以便自己日后回顾。希望自己少走一些弯路。
-#1.">
-<meta property="og:updated_time" content="2017-01-05T00:26:15.669Z">
+1.">
+<meta property="og:updated_time" content="2017-01-05T00:47:03.321Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Memory Control">
 <meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;C++内存管理可谓是我在研一期间计算机应用编程课上学到的最多的东西。对于一个C++程序员来说最难的也就是C++的内存管理了，在经过一系列的考证以及训练以后，我想写下我对C++内存管理的一些理解以及我在写代码时在别人博客上学到的东西，当然最重要的就是自己的一些经验教训，以便自己日后回顾。希望自己少走一些弯路。
-#1.">
+1.">
 
 
 
@@ -329,9 +329,8 @@
 
       
         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C++内存管理可谓是我在研一期间计算机应用编程课上学到的最多的东西。对于一个C++程序员来说最难的也就是C++的内存管理了，在经过一系列的考证以及训练以后，我想写下我对C++内存管理的一些理解以及我在写代码时在别人博客上学到的东西，当然最重要的就是自己的一些经验教训，以便自己日后回顾。希望自己少走一些弯路。</p>
-<p>#1. C++的内存存储区划分<br>在C++中，内存分成5个区，分别是堆区、栈区、自由存储区、全局/静态存储区和常量存储区。<br>1) 栈：在执行函数时，函数内局部变量的存储单元都可以在栈上创建，函数执行结束时这些存储单元自动被释放。栈内存分配运算内置于处理器的指令集中，效率很高，但是分配的内存容量有限。<br>2) 堆：就是那些由new分配的内存块，他们的释放编译器不去管，由我们的应用程序去控制，一般一个new就要对应一个delete。如果程序员没有释放掉，那么在程序结束后，操作系统才会自动回收。<br>3) 自由存储区：就是那些由malloc等分配的内存块，他和堆是十分相似的，不过它是用free来结束自己的生命的。<br>4) 全局/静态存储区：全局变量和静态变量被分配到同一块内存中，在以前的C语言中，全局变量又分为初始化的和未初始化的，在C++里面没有这个区分了，他们共同占用同一块内存区。<br>5) 常量存储区：这是一块比较特殊的存储区，他们里面存放的是程序定义常量，定义之后不允许再次被修改，只能够被访问。</p>
-<p>#2. 明确堆与栈的区别</p>
-<p>上面说到堆与栈是不同的存储区，首先来一个简单的例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">     int* p = new int [5];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="1-C-的内存存储区划分"><a href="#1-C-的内存存储区划分" class="headerlink" title="1. C++的内存存储区划分"></a>1. C++的内存存储区划分</h2><p>在C++中，内存分成5个区，分别是堆区、栈区、自由存储区、全局/静态存储区和常量存储区。<br>1) 栈：在执行函数时，函数内局部变量的存储单元都可以在栈上创建，函数执行结束时这些存储单元自动被释放。栈内存分配运算内置于处理器的指令集中，效率很高，但是分配的内存容量有限。<br>2) 堆：就是那些由new分配的内存块，他们的释放编译器不去管，由我们的应用程序去控制，一般一个new就要对应一个delete。如果程序员没有释放掉，那么在程序结束后，操作系统才会自动回收。<br>3) 自由存储区：就是那些由malloc等分配的内存块，他和堆是十分相似的，不过它是用free来结束自己的生命的。<br>4) 全局/静态存储区：全局变量和静态变量被分配到同一块内存中，在以前的C语言中，全局变量又分为初始化的和未初始化的，在C++里面没有这个区分了，他们共同占用同一块内存区。<br>5) 常量存储区：这是一块比较特殊的存储区，他们里面存放的是程序定义常量，定义之后不允许再次被修改，只能够被访问。</p>
+<h2 id="2-明确堆与栈的区别"><a href="#2-明确堆与栈的区别" class="headerlink" title="2. 明确堆与栈的区别"></a>2. 明确堆与栈的区别</h2><p>上面说到堆与栈是不同的存储区，首先来一个简单的例子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">     int* p = new int [5];</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上面的例子中，我们先在堆栈中申请了存储一个指针变量的空间，然后在堆中根据堆申请的内存大小在堆中申请一块内存空间。<br>其实两者主要的区别由以下几点：<br>1)管理方式不同；<br>2)空间大小不同；<br>3)能否产生碎片不同；<br>4)生长方向不同；<br>5)分配方式不同；<br>6)分配效率不同；</p>
 <p>管理方式：对于栈来讲，是由编译器自动管理，非手工控制；对于堆来说，申请以及释放都需要手动完成，如果申请了空间而不释放，对于长时间运行的程序，由于未释放空间而产生的内存泄漏问题是致命的。</p>
 <p>空间大小：一般来讲在32位系统下，堆内存可以达到4G的空间，从这个角度来看堆内存几乎是没有什么限制的。但是对于栈来讲，栈的空间大小都是在编译时确定的，一般都比较小。</p>
@@ -340,8 +339,8 @@
 <p>分配方式：堆的空间都是运行时动态分配的。栈有2种分配方式：静态分配和动态分配。静态分配是编译器完成的，比如局部变量的分配。动态分配由alloca函数进行分配，但是栈的动态分配和堆是不同的，他的动态分配是由编译器进行释放，无需我们手工实现。</p>
 <p>分配效率：栈是机器系统提供的数据结构，计算机会在底层对栈提供支持：分配专门的寄存器存放栈的地址，压栈出栈都有专门的指令执行，这就决定了栈的效率比较高。堆则是C/C++函数库提供的，它的机制是很复杂的，例如为了分配一块内存，库函数会按照一定的算法（具体的算法可以参考数据结构/操作系统）在堆内存中搜索可用的足够大小的空间，如果没有足够大小的空间（可能是由于内存碎片太多），就有可能调用系统功能去增加程序数据段的内存空间，这样就有机会分到足够大小的内存，然后进行返回。显然，堆的效率比栈要低得多。</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;所以栈在程序中是应用最广泛的，就算是函数的调用也利用栈去完成，函数调用过程中的参数，返回地址，EBP和局部变量都采用栈的方式存放。所以，我们推荐大家尽量用栈，而不是用堆。 当然虽然栈有如此众多的好处，但是由于和堆相比不是那么灵活，有时候分配大量的大块的内存空间，还是用堆好一些。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;无论是堆还是栈，都要防止越界现象的发生，因为越界的结果要么是程序崩溃，要么是摧毁程序的堆、栈结构，产生以想不到的结果。如果一旦失误，注明的Segmentation fault就找上门了！！！</p>
-<p>#3.内存管理中的经验教训</p>
-<p>##(1)简单的野指针情况与简单的内存越界<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;先来说一个比较初级的错误。我们经常会在未给指针分配空间的情况下就开始利用指针指向的内存空间，从而引起内存错误。例如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	char *p;</div><div class="line">	strcpy(p,&quot;hello world!&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="3-内存管理中的经验教训"><a href="#3-内存管理中的经验教训" class="headerlink" title="3.内存管理中的经验教训"></a>3.内存管理中的经验教训</h2><h3 id="1-简单的野指针情况与简单的内存越界"><a href="#1-简单的野指针情况与简单的内存越界" class="headerlink" title="(1)简单的野指针情况与简单的内存越界"></a>(1)简单的野指针情况与简单的内存越界</h3><p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;先来说一个比较初级的错误。我们经常会在未给指针分配空间的情况下就开始利用指针指向的内存空间，从而引起内存错误。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	char *p;</div><div class="line">	strcpy(p,&quot;hello world!&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	char ss[200];</div><div class="line">	strcpy(ss,&quot;hello world!&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	char *p;</div><div class="line">	p = (char*)malloc(sizeof(2));</div><div class="line">	strcpy(ss,&quot;hello world!&quot;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;以上三种情况，第一种情况执行失败，因为没有为p申请空间而直接是用p导致野指针错误。第二种情况，ss本质也是一个字符串指针，ss指向一个200个字节的数组空间，执行成功。第三种情况执行失败，虽然为指针p申请了2个字节的空间，但是hello world!的存储远不止两个字节的空间，导致内存越界，执行失败。此外除了以上3中比较简单的情况，还有另一种比较常见的编译阶段就经常出现的警告信息（如果g++版本比较新）：warning：deprecated conversion from string constant to ‘char *’；例子如下：</p>
@@ -349,16 +348,21 @@
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;上面的程序会在strcpy处报出如上警告，原因就是strcpy()函数的目的就是你给我两个char<em>的变量，而且我会修改两个char</em>变量所指向空间中的数据。而如上程序中，你赋予指针p的是一个字符串常量的地址，而修改常量指针里面的数据是会报错的，最终导致执行失败！！！需要消除这个可怕警告的办法就是：<br>1)你新建一个指针变量，并为其申请空间，然后将值赋给它，然后将它作为形参传递给形参类型为指针变量的函数。<br>2)如果你的函数并不需要改变传进来形参的值的话，直接将函数的形参类型改为常量指针类型即可。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这里也给自己加深点印象就是常量指针的概念。常量指针的定义如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	int a=0,b=1; 	</div><div class="line">	cont int *p;</div><div class="line">	p = &amp;a; //success</div><div class="line">	p = &amp;b; //success</div><div class="line">	*p = 3; //fail</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;以上例子也就是说常量指针指向的空间内部的内容不能够被改变！</p>
-<p>##（2）野指针与脏数据<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第二个要说的是释放指针所指空间之后的野指针与脏数据现象。我们先来看个例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">#include &lt;iostream&gt;</div><div class="line">using namespace std;</div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">    int *p=new int;</div><div class="line">    *p=3;</div><div class="line">    cout&lt;&lt;&quot;将3赋给p的地址后，指针p读取的值：&quot;&lt;&lt;*p&lt;&lt;endl;</div><div class="line">    delete p;</div><div class="line">    cout&lt;&lt;&quot;删除空间后，指针p读取的值：&quot;&lt;&lt;*p&lt;&lt;endl;</div><div class="line">    long *p1=new long;</div><div class="line">    *p1=100;</div><div class="line">    cout&lt;&lt;&quot;创建新空间后，指针p中保存的地址：&quot;&lt;&lt;p&lt;&lt;endl;</div><div class="line">    cout&lt;&lt;&quot;指向新空间的指针p1保存的地址：&quot;&lt;&lt;p1&lt;&lt;endl;</div><div class="line">    *p=23;</div><div class="line">    cout&lt;&lt;&quot;将23赋给p的地址后，指针p读取的值：&quot;&lt;&lt;*p&lt;&lt;endl;</div><div class="line">    cout&lt;&lt;&quot;将23赋给p的地址后，指针p1读取的值：&quot;&lt;&lt;*p1&lt;&lt;endl;</div><div class="line">    delete p1;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>###（2）野指针与脏数据</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第二个要说的是释放指针所指空间之后的野指针与脏数据现象。我们先来看个例子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">#include &lt;iostream&gt;</div><div class="line">using namespace std;</div><div class="line">int main()</div><div class="line">&#123;</div><div class="line">    int *p=new int;</div><div class="line">    *p=3;</div><div class="line">    cout &lt;&lt; &quot;将3赋给p的地址后，指针p读取的值：&quot;&lt;&lt;*p &lt;&lt; endl;</div><div class="line">    delete p;</div><div class="line">    cout &lt;&lt; &quot;删除空间后，指针p读取的值：&quot; &lt;&lt; *p &lt;&lt; endl;</div><div class="line">    long *p1=new long;</div><div class="line">    *p1=100;</div><div class="line">    cout &lt;&lt; &quot;创建新空间后，指针p中保存的地址：&quot; &lt;&lt; p &lt;&lt; endl;</div><div class="line">    cout&lt;&lt;&quot;指向新空间的指针p1保存的地址：&quot;&lt;&lt; p1 &lt;&lt; endl;</div><div class="line">    *p=23;</div><div class="line">    cout &lt;&lt; &quot;将23赋给p的地址后，指针p读取的值：&quot; &lt;&lt; *p &lt;&lt; endl;</div><div class="line">    cout &lt;&lt; &quot;将23赋给p的地址后，指针p1读取的值：&quot; &lt;&lt; *p1 &lt;&lt; endl;</div><div class="line">    delete p1;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>输出的结果如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">将3赋给p的地址后，指针p读取的值：3</div><div class="line">删除空间后，指针p读取的值：-572662307</div><div class="line">创建新空间后，指针p中保存的地址：000F8158</div><div class="line">指向新空间的指针p1保存的地址：000F8158</div><div class="line">将23赋给p的地址后，指针p读取的值：23</div><div class="line">将23赋给p的地址后，指针p1读取的值：23</div></pre></td></tr></table></figure>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由此可以看到，虽然我们已经删除了指针p指向的空间，但是发现指针并没有被删除掉，它依然指向原来的空间，而且和指针p1指向的恰好是同一个空间。当我们把p指向的空间的值改变成23时，p1所指向的空间的值也就改变了，这是相当危险的。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由上可以看到，我们在删除一个指针指向的空间之后一定要将该指针的值赋为NULL。这样才能防止因为误操作被删除空间的野指针而影响到我们真正关心的数据。系统在管理内存时，当内存释放收回之后，是会分配给新开辟的空间的。所以极有可能我们只是为指针申请了一个空间，没有操作指针所指向的空间的值就发现已经有数据了。而这些数据是很有可能之前使用过被释放后留下的脏数据。所以谨记释放空间后避免野指针危害，p=NULL是你需要做的另一件事情。</p>
-<p>##（3）循环体内的内存空间管理<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们很多人初写代码，很喜欢做一件事情，就是说为了程序的局部性原则，某个域内需要使用的变量都会放到这个域中定义、使用。然而这样做有时并不是好事，只会影响效率。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先我想先声明的一件事情是，当你在一个循环体中不断的定义局部动态变量时，并不会造成“栈溢出”，经过验证的确如此。因为这就是我想说的在域内定义局部动态变量的坏处所在。你在一个循环体内进行完一轮迭代时，循环体内所有因为动态变量定义申请的内存空间都会被系统释放掉，然后到下一轮迭代时再重新申请这些空间。这时如果你的这些个动态变量都只是些基本数据类型，可能程序不大的情况下对程序性能的影响并不巨大。然而如果你在循环体内不断的定义一个类变量的话，这一构造、析构，如果你构造函数、析构函数内部有内存空间的申请与释放的话，对程序性能的影响将是巨大的。因为new-delete，malloc-free的过程本身就极为复杂。</p>
-<p>##（4）函数返回指针、对象的引用<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;很多时候为了程序的模块化，我们所要做的事情就是构造功能函数。而很多时候我们是想要处理一些功能函数之后有大块的返回数据的。因此我们返回的数据很多时候是一个对象的指针或者对象的引用。关于什么不要返回局部对象的引用，局部变量的指针这样的老生常谈的东西，肯定大家都懂，我就不说了。我想小谈一下的是返回对象引用与返回对象这两者的区别。返回对象则在函数返回数据的过程中需要设计到这个返回变量的拷贝构造，析构的时间消耗。这对于追求高性能的C++来说是极为不友好的。所以在返回一个传入到函数中的形参引用变量时，返回一个对象的引用，相当于是返回一个指针，并不会涉及到那些无畏的消耗，也不会有内存错误，这是相当友好的。当然当迫不得已需要返回一个局部新建的类实例变量时，就没有办法，只能返回对象了。</p>
-<p>##（5）STL容器的内存空间管理<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在写C++程序时，有时STL容器（map、list、vector、queue、stack等）是我们最喜欢的东西，然而又是我们最不喜欢的东西。说它是我们最喜欢的东西是因为利用它我们很方便的通过简单的诸如push_back(),pop(),remove()的方法接口(STL容器所有的这些出入操作都是复制拷贝的，这个其实大家都知道)来存储管理我们所关心的对象实例。而让我们不喜欢的东西是，有些时候这些个容器的灵活性又会因为只提供这么简单的几个操作而受到严重的限制。比如我们突然想利用下标访问容器中某个特定的单元，我们想向容器中某个特定下标的存储空间插入某个新实例元素。但是这时候正当我们兴高采烈地这么做时，Segmentation fault可能又来了，你这时估计头都要炸了。。。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;那么到底是什么原因呢，极有可能是你访问越界了。因为STL容器这个东西它并不是个简单的数组，它让你使用一些简单的接口非常方便的使用它是有它的理由的，当你想通过下标访问它的某个元素或通过下标插入某个元素时，很有可能这个容器还没有那么长的空间，导致你访问越界。所以作为一个C++的程序员，你现在可以做的事情有两件：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第一很简单，就是你每次想要操作前，先判断一下这个容器到底有多大的实际空间，你自己要做到心中有数，到底能不能按照你预期的做。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第二就是如果你知道你的容器大概的空间是一个什么样的范围，你可以为它预分配空间，利用的方法就是resize()。这样就能很大程度让你心里有底，知道这个容器肯定有这么大能够利用了。但是这里尤为要注意的这里还有一个函数reserve()是可以用来预分配空间的。但是resize()才是真正的预分配空间，而且是经过初始化的。所以可以直接访问这些空间。但是reserve()只是预分配这么多空间，而这些空间时没有经过初始化的，不能被直接访问。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最后一个我想说的比较特殊的东西是我在这次实验中用于存储图的一个数据结构vector<vector<neighbor> &gt;;别小看这个东西，这个东西的一个初始化过程我分享在下面，具体就自己体会吧。想用下标读入图，你先不弄好vector的内存，就等segmentation fault吧！</vector<neighbor></p>
+<p>###（3）循环体内的内存空间管理</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;我们很多人初写代码，很喜欢做一件事情，就是说为了程序的局部性原则，某个域内需要使用的变量都会放到这个域中定义、使用。然而这样做有时并不是好事，只会影响效率。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;首先我想先声明的一件事情是，当你在一个循环体中不断的定义局部动态变量时，并不会造成“栈溢出”，经过验证的确如此。因为这就是我想说的在域内定义局部动态变量的坏处所在。你在一个循环体内进行完一轮迭代时，循环体内所有因为动态变量定义申请的内存空间都会被系统释放掉，然后到下一轮迭代时再重新申请这些空间。这时如果你的这些个动态变量都只是些基本数据类型，可能程序不大的情况下对程序性能的影响并不巨大。然而如果你在循环体内不断的定义一个类变量的话，这一构造、析构，如果你构造函数、析构函数内部有内存空间的申请与释放的话，对程序性能的影响将是巨大的。因为new-delete，malloc-free的过程本身就极为复杂。</p>
+<p>###（4）函数返回指针、对象的引用</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;很多时候为了程序的模块化，我们所要做的事情就是构造功能函数。而很多时候我们是想要处理一些功能函数之后有大块的返回数据的。因此我们返回的数据很多时候是一个对象的指针或者对象的引用。关于什么不要返回局部对象的引用，局部变量的指针这样的老生常谈的东西，肯定大家都懂，我就不说了。我想小谈一下的是返回对象引用与返回对象这两者的区别。返回对象则在函数返回数据的过程中需要设计到这个返回变量的拷贝构造，析构的时间消耗。这对于追求高性能的C++来说是极为不友好的。所以在返回一个传入到函数中的形参引用变量时，返回一个对象的引用，相当于是返回一个指针，并不会涉及到那些无畏的消耗，也不会有内存错误，这是相当友好的。当然当迫不得已需要返回一个局部新建的类实例变量时，就没有办法，只能返回对象了。</p>
+<p>###（5）STL容器的内存空间管理</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在写C++程序时，有时STL容器（map、list、vector、queue、stack等）是我们最喜欢的东西，然而又是我们最不喜欢的东西。说它是我们最喜欢的东西是因为利用它我们很方便的通过简单的诸如push_back(),pop(),remove()的方法接口(STL容器所有的这些出入操作都是复制拷贝的，这个其实大家都知道)来存储管理我们所关心的对象实例。而让我们不喜欢的东西是，有些时候这些个容器的灵活性又会因为只提供这么简单的几个操作而受到严重的限制。比如我们突然想利用下标访问容器中某个特定的单元，我们想向容器中某个特定下标的存储空间插入某个新实例元素。但是这时候正当我们兴高采烈地这么做时，Segmentation fault可能又来了，你这时估计头都要炸了。。。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;那么到底是什么原因呢，极有可能是你访问越界了。因为STL容器这个东西它并不是个简单的数组，它让你使用一些简单的接口非常方便的使用它是有它的理由的，当你想通过下标访问它的某个元素或通过下标插入某个元素时，很有可能这个容器还没有那么长的空间，导致你访问越界。所以作为一个C++的程序员，你现在可以做的事情有两件：<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第一很简单，就是你每次想要操作前，先判断一下这个容器到底有多大的实际空间，你自己要做到心中有数，到底能不能按照你预期的做。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第二就是如果你知道你的容器大概的空间是一个什么样的范围，你可以为它预分配空间，利用的方法就是resize()。这样就能很大程度让你心里有底，知道这个容器肯定有这么大能够利用了。但是这里尤为要注意的这里还有一个函数reserve()是可以用来预分配空间的。但是resize()才是真正的预分配空间，而且是经过初始化的。所以可以直接访问这些空间。但是reserve()只是预分配这么多空间，而这些空间时没有经过初始化的，不能被直接访问。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最后一个我想说的比较特殊的东西是我在这次实验中用于存储图的一个数据结构vector<vector<neighbor> &gt;;别小看这个东西，这个东西的一个初始化过程我分享在下面，具体就自己体会吧。想用下标读入图，你先不弄好vector的内存，就等segmentation fault吧！</vector<neighbor></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">	vector&lt;vector&lt;neighbor&gt; &gt; test;</div><div class="line">	test.resize(n);//假设图有n个节点</div><div class="line">	for(int i=0; i&lt;n; i++) &#123;</div><div class="line">		vector&lt;neighbor&gt; x;</div><div class="line">		test.push_back(x);</div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>##（6）构造函数、析构函数是否调用引起的内存问题<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于类对象的定义，常见的形式无非就是以下三种，我们先来看个例子：</p>
+<p>###（6）构造函数、析构函数是否调用引起的内存问题</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于类对象的定义，常见的形式无非就是以下三种，我们先来看个例子：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">class Test&#123;</div><div class="line">	Test() &#123;</div><div class="line">    	cout &lt;&lt; &quot;construction&quot; &lt;&lt; endl;</div><div class="line">  	&#125;</div><div class="line">	Test(const Test&amp; t) &#123;</div><div class="line">		cout &lt;&lt; &quot;copy construction&quot; &lt;&lt; endl;</div><div class="line">	&#125;</div><div class="line">  	~Test() &#123;</div><div class="line">    	cout &lt;&lt; &quot;distruction&quot;  &lt;&lt; endl;</div><div class="line">  	&#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">int main() &#123;</div><div class="line">	Test test1;//1-1</div><div class="line">	Test test2(test1);//1-2</div><div class="line">	Test* test2 = new Test();//2</div><div class="line">	Test* test3 = (Test*)malloc(sizeof(Test));//3</div><div class="line">	//省略了释放空间</div><div class="line">	return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;以上三种方式的不同是第一种，第二种都会调用类的构造函数，而第三种malloc的方式定义的变量是不会调用构造函数的。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于非内部数据类型的对象而言，光用maloc/free无法满足动态对象的要求。对象在创建的同时要自动执行构造函数，对象在消亡之前要自动执行析构函数。由于malloc/free是库函数而不是运算符，不在编译器控制权限之内，不能够把执行构造函数和析构函数的任务强加于malloc/free。那么既然new/delete的功能完全覆盖了malloc/free，为什么C++不把malloc/free淘汰出局呢？这是因为C++程序经常要调用C函数，而C程序只能用malloc/free管理动态内存。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;所以这个时候就需要注意了，当我们用malloc,free去建立对象的存储空间时，一定要手动的去为这些类实例初始化，申请一些其内部变量必要的空间。另外，在使用完毕后还一定要记得释放掉这些手动申请的空间，最后释放实例变量。否则Segmentation fault又要找上门了。<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;最后还有一点，如果用free释放“new创建的动态对象”，那么该对象因无法执行析构函数而可能导致程序出错。如果用delete释放“malloc申请的动态内存”，结果也会导致程序出错，但是该程序的可读性很差。所以new/delete必须配对使用，malloc/free也一样。<br><br><br><br><br><br></p>
 <p>ok，先写这么多，太多要写了，作者不才，主要也是写给自己看的；欢迎评论指正，共同进步，谢谢！（邮箱也可以daiminglong94@gmail.com）未完待续，睡觉 zzz。。。。。。</p>
@@ -469,8 +473,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/avatar.gif"
@@ -512,6 +525,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-C-的内存存储区划分"><span class="nav-number">1.</span> <span class="nav-text">1. C++的内存存储区划分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-明确堆与栈的区别"><span class="nav-number">2.</span> <span class="nav-text">2. 明确堆与栈的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-内存管理中的经验教训"><span class="nav-number">3.</span> <span class="nav-text">3.内存管理中的经验教训</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-简单的野指针情况与简单的内存越界"><span class="nav-number">3.1.</span> <span class="nav-text">(1)简单的野指针情况与简单的内存越界</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>
